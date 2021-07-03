@@ -17,7 +17,7 @@ Information about table and generated sample data:
 
 ## 1. Prepare
 
-* download stage folder to the ansible control server /tmp
+* download "stage" folder to the ansible control server /tmp
 * download Oracle Client LINUX.X64_193000_client_home.zip to the ansible control server /tmp
 * configure an Ansible host file -> add App server to [webservers]
 
