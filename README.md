@@ -17,8 +17,20 @@ Information about table and generated sample data:
 
 ## 1. Prepare
 
+* download stage folder to the ansible control server /tmp
+* download Oracle Client LINUX.X64_193000_client_home.zip to the ansible control server /tmp
+* configure an Ansible host file -> add App server to [webservers]
 
-## 4. Run the playbook role "oracleclient19c_install"
+## 2. Run the playbook to install Oracle Client
+
+On Ansible control server run install_oc.yaml
+
+## 3. Run the playbook to create the sample table and gather the data
+
+On Ansible control server run ora_scripts.yaml
+
+## 4. Save the gathered data
+
+copy the file /tmp/gathered_data.csv from Ansible control server to "result" folder
 
 
-## 4. Run the playbook role "oracleclient19c_install"
