@@ -1,0 +1,40 @@
+- name: execute ora scipts
+  hosts: webservers
+  remote_user: oracle
+
+  tasks:
+
+  - name: create folder
+    file:
+      path: /home/oracle/stage
+      state: directory
+
+  - name: copying files
+    copy:
+      src: /tmp/stage/create_test_tbl.sql
+      dest: /home/oracle/stage
+      owner: oracle
+      group: oinstall
+      mode: 0644
+
+  - name: copying files
+    copy:
+      src: /tmp/stage/spool_first_100_rows.sql
+      dest: /home/oracle/stage
+      owner: oracle
+      group: oinstall
+      mode: 0644
+
+  - name: copying files
+    copy:
+      src: /tmp/stage/ora_script.sh
+      dest: /home/oracle/stage
+      owner: oracle
+      group: oinstall
+      mode: 0755
+
+  - name: execute
+    command: bash /home/oracle/stage/ora_script.sh
+
+  - name: fetch the csv file
+    fetch: src=/home/oracle/stage/gathered_data.csv dest=/tmp/ flat=yes

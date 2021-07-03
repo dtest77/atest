@@ -1,0 +1,37 @@
+- name: install oracle client
+  hosts: webservers
+  remote_user: oracle
+
+  tasks:
+
+  - name: create folder
+    file:
+      path: /home/oracle/stage
+      state: directory
+
+  - name: create folder
+    file:
+      path: /u01/app/oracle/product/19.0.0/client
+      state: directory
+
+  - name: copying files
+    copy:
+      src: /tmp/stage/LINUX.X64_193000_client_home.zip
+      dest: /home/oracle/stage
+      owner: oracle
+      group: oinstall
+      mode: 0644
+
+  - name: copying files
+    copy:
+      src: /tmp/stage/clientsetup.rsp
+      dest: /home/oracle/stage
+      owner: oracle
+      group: oinstall
+      mode: 0644
+
+  - name: execute
+    command: /bin/unzip -nq /home/oracle/stage/LINUX.X64_193000_client_home.zip -d /u01/app/oracle/product/19.0.0/client
+
+  - name: execute
+    command: /u01/app/oracle/product/19.0.0/client/runInstaller -waitforcompletion -silent -noconfig -force -responseFile /home/oracle/stage/clientsetup.rsp
