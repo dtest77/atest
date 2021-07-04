@@ -23,11 +23,15 @@ Information about table and generated sample data:
 
 ## 2. Run the playbook to install Oracle Client
 
-On Ansible control server run install_oc.yaml
+On Ansible control server:
+* switch to /tmp/stage
+* run ansible-playbook install_oc.yaml
 
 ## 3. Run the playbook to create the sample table and gather the data
 
-On Ansible control server run ora_scripts.yaml
+On Ansible control server:
+* switch to /tmp/stage
+* run ansible-playbook ora_scripts.yaml
 
 ## 4. Save the gathered data
 
